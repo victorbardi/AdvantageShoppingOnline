@@ -1,7 +1,10 @@
 package test;
 
 import static org.junit.Assert.
-        import org.junit.Test
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +13,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;:
 
 public class InformacoesUsuarioTest {
+
+    private WebDriver navegador;
+
     @Test
     public void testAdicionarInformacaoUsuario()
+            @Before
+                    public void setup() {
+        /Abrindo o navegador
+                System.setProperty("webdriver.chrome.driver", "/Users/victor.cabral/drivers/chromedriver")
+                navegador = new ChromeDriver();
+                navegador.manage().timeouts().implictlyWait(5 , TimeUnit.SECONDS);
+
+                //Navegando página
+                navegador.get("https://www.advantageonlineshopping.com/");
+
+            }
+
+
     {
         //Abrindo o navegador
         System.setProperty("webdriver.chrome.driver", "/Users/victor.cabral/drivers/chromedriver")
@@ -41,11 +60,16 @@ public class InformacoesUsuarioTest {
         String textonoElementousuario01 = usuario01
         assertEquals(expected "usuario01" , textonoElementousuario01);
 
-        //Fechar o navegador
-        navegador.quit();
 
         //Validação e conclusão do teste
 
 
     }
+
+    @After
+    public void  tearDown () {
+        //Fechar o navegador
+        navegador.quit();
+    }
+
 }
